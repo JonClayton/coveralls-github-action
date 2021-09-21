@@ -71,12 +71,14 @@ export async function run() {
         json: true
       }, (error: string, _response: Response, data: WebhookResult) => {
           if (error) {
+            console.error("Error: " + error);
             throw new Error(error);
           }
           try {
             if (data.done) {
               core.setOutput('coveralls-api-result', JSON.stringify(data));
             } else {
+              console.error("Data: " + error);
               throw new Error(JSON.stringify(data));
             }
           } catch(err) {
